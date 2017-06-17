@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}7crazy.top{% endblock %}
+
+{% block page_content %}
+
+{% if info %}
+<table class="table">
+    <thead>
+        <tr>
+          <th>课程名</th>
+          <th>分数</th>
+          <th>最终分数</th>
+            <th>补考成绩</th>
+            <th>学分</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for i in info %}
+        <tr>
+          <th scope="row">{{ i[4] }}</th>
+          <td>{{ i[6] }}</td>
+          <td>{{ i[7] }}</td>
+            <td>{% if i %}
+              {{ i[9] }}
+              {% endif %}
+          </td>
+          <td>{{ i[11] }}</td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+
+
+</table>
+{% else %}
+
+{% endif %}
+
+
+
+{% endblock %}
