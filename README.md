@@ -110,3 +110,5 @@ server {
     按时更新数据成绩
   * ``` nohup python3 runserver.py & ```
 
+
+![7crazy](https://www.7crazy.top/wp-content/uploads/2017/06/00.jpg)
