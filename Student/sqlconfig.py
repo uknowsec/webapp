@@ -116,4 +116,4 @@ def alluser():
 
 
 if __name__ == '__main__':
-    selectgrade('12014054055')
+    createtables()
