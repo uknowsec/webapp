@@ -32,7 +32,7 @@
 
 * 安装必要的python库
 ```
-   pip install -r requirment.txt
+   pip3 install -r requirment.txt
 ```
 
 ```python
@@ -94,7 +94,7 @@ server {
 	location / {
 		include      uwsgi_params;
 		uwsgi_pass   127.0.0.1:8002;  # 指向uwsgi 所应用的内部地址,所有请求将转发给uwsgi 处理
-		uwsgi_param UWSGI_CHDIR  /home/webapp/sanjiangweb; # 指向网站根目录
+		uwsgi_param UWSGI_CHDIR  /home/www/; # 指向网站根目录
 		uwsgi_param UWSGI_SCRIPT app:app; # 指定启动程序
 	}
 }
