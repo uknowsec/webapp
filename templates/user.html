@@ -37,7 +37,13 @@
 </table>
 <h2 align="center">默认15分钟自动查询更新</h2>
 {% else %}
-<h2>请刷新页面或重新登录</h2>
+<h2>正在查询，请稍后</h2>
+<script language="JavaScript">
+function myrefresh(){
+window.location.reload();
+}
+setTimeout('myrefresh()',1000); //指定1秒刷新一次
+</script>
 {% endif %}
 
 

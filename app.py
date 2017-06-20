@@ -30,10 +30,10 @@ def index():
         name = form.name.data
         passwd = form.password.data
         students = student(name,passwd)
-        thr = Thread(target=students.getgrade)
-        thr.start()
-        #students.getgrade()
-        if students.getstatus() :
+        # thr = Thread(target=students.getgrade)
+        # thr.start()
+        students.getgrade()
+        if students.getstatus():
             session['name'] = name
             return redirect(url_for('user', id=name))
         else:

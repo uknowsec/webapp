@@ -18,7 +18,7 @@ class student:
         self.name = ''
         self.info = {}
         self.grade = []
-        self.status = True
+        self.status = False
 
     def getstatus(self):
         return self.status
@@ -55,6 +55,7 @@ class student:
         except Exception as e:
             self.status = False
             return
+        self.status = True
         self.name = name[:-2]
         # try:self.name = quote(self.name, encoding='gb2312')
         self.name = quote(self.name, encoding='utf-8')
