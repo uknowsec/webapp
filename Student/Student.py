@@ -56,7 +56,9 @@ class student:
             self.status = False
             return
         self.name = name[:-2]
-        self.name = quote(self.name, encoding='gb2312')
+        # try:self.name = quote(self.name, encoding='gb2312')
+        self.name = quote(self.name, encoding='utf-8')
+
         find_url = baseUrl + '/xscj.aspx?xh=' + self.number + '&xm=' + self.name + '&gnmkdm=N121605'
 
         # 两次get 避免move object

@@ -4,9 +4,9 @@
 {% block title %}7crazy.top{% endblock %}
 
 {% block page_content %}
-
-{% if info %}
 <p align="right"><a href="{{ url_for('user', id=name) }}">刷新页面</a> | <a href="{{ url_for('out') }}">退出</a></p>
+{% if info %}
+
 <table class="table">
     <thead>
         <tr>
@@ -37,7 +37,7 @@
 </table>
 <h2 align="center">默认15分钟自动查询更新</h2>
 {% else %}
-
+<h2>请刷新页面或重新登录</h2>
 {% endif %}
 
 
