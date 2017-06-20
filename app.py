@@ -8,6 +8,7 @@ from flask_bootstrap import Bootstrap
 from Student.Student import student
 from Student.sqlconfig import selectgrade, selectuser
 from threading import Thread
+import time
 
 
 app = Flask(__name__)
@@ -18,7 +19,7 @@ bootstrap = Bootstrap(app)
 
 class NameForm(FlaskForm):
     name = StringField('学号', validators=[DataRequired()])
-    password = PasswordField('密码', validators=[DataRequired(), Length(6, 20, "密码在6-15位")])
+    password = PasswordField('密码', validators=[DataRequired(), Length(6, 20, "密码在6-20位")])
     submit = SubmitField('查询')
 
 @app.route('/', methods=['GET', 'POST'])
@@ -29,11 +30,10 @@ def index():
         name = form.name.data
         passwd = form.password.data
         students = student(name,passwd)
-        thr = Thread(target=students.getgrade)
-        thr.start()
-        # students.getgrade()
-        # print(students.info)
-        if selectuser(name):
+        # thr = Thread(target=students.getgrade)
+        # thr.start()
+        students.getgrade()
+        if students.getstatus() :
             session['name'] = name
             return redirect(url_for('user', id=name))
         else:
@@ -43,13 +43,20 @@ def index():
 
     return render_template('index.html', form=form)
 
+
 @app.route('/user/<id>')
 def user(id):
     if session.get('name') is None:
         return redirect(url_for('index'))
     uid=session.get('name')
     info = selectgrade(uid)
-    return render_template('user.html', info=info)
+    return render_template('user.html', info=info, name=session.get('name'))
+
+
+@app.route('/out')
+def out():
+    session['name'] = None
+    return redirect(url_for('index'))
 
 @app.errorhandler(404)
 def page_not_found(e):

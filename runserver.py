@@ -10,4 +10,4 @@ if __name__ == '__main__':
         for user in users:
             stu = student(user[0],user[1])
             Thread(target=stu.getgrade()).start()
-        time.sleep(1500)
+        time.sleep(15)

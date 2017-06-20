@@ -5,7 +5,6 @@ from urllib.request import quote
 import re
 from threading import Thread
 from . import sqlconfig
-import time
 
 def findvalues(tpage):
     this_html = BeautifulSoup(tpage.text, "lxml")
@@ -19,7 +18,10 @@ class student:
         self.name = ''
         self.info = {}
         self.grade = []
+        self.status = True
 
+    def getstatus(self):
+        return self.status
 
     def getgrade(self):
         s = requests.Session()
@@ -51,8 +53,9 @@ class student:
         try:
             name = cd.find('span', id='xhxm').get_text()
         except Exception as e:
+            self.status = False
             return
-        username = name[:-2]
+        self.name = name[:-2]
         self.name = quote(self.name, encoding='gb2312')
         find_url = baseUrl + '/xscj.aspx?xh=' + self.number + '&xm=' + self.name + '&gnmkdm=N121605'
 
